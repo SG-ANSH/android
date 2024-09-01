@@ -1,34 +1,57 @@
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:scaleY="4"
+        android:rotation="-90"
+
+        />
+</RelativeLayout>
+
+###################################################################
+
 MainActivity.kt
+
+package com.example.progressbar
+
+import android.animation.ObjectAnimator
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.os.Handler
 
 class MainActivity : AppCompatActivity(){
 
-  override fun onCreate(savedInstanceState : bundle?){
+	lateinit var progressBar: ProgressBar
+	override fun onCreate(savedInstanceState : Bundle?){
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_main)
 
-      super.onCreate(savedInstanceState)
-      setContentView(R.layout.activity_main)
 
-      progressBar.max = 10
+		progressBar.max = 1000
+		val currentProgress = 600
 
-      val currentProgress = 6
+		ObjectAnimator.ofInt(progressBar, "progress", currentProgress)
+			.setDuration(2000)
+			.start()
 
-      objectAnimator.ofInt(progressBar, "Progress", currentProgress).setDuration(2000).start()
+
+	}
+
 }
-
-}
-
-############################################################
-
-activity_main.xml
-
-Relative Layout
-
-<ProgressBar
-    android:layout_centerInParent= "true"
-    android:id= "@+id/progressBar"
-    style= "?android:attr/progressBarStyleHorizontal"
-    android:laoyout_width = "200dp"
-    android: layout_height = "wrap_content"
-    android: scaleY = "4"
-    android: rotation = "-90"
-
-/>
