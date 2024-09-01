@@ -1,0 +1,57 @@
+1. Create Android Resource Directory -> menu type
+2. Create Android Resource File -> menu type
+
+menu.xml
+
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:id="@+id/item1"
+    android:title="Homepage"
+    />
+
+    <item android:id="@+id/item2"
+        android:title="About Us"
+        />
+
+    <item android:id="@+id/item3"
+        android:title="Contact Us"
+        />
+
+
+</menu>
+
+###################################################################################
+
+MainActivity.kt
+
+package com.example.menuitems
+
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item1 -> Toast.makeText(this, "Homepage Selected", Toast.LENGTH_SHORT).show()
+            R.id.item2 -> Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show()
+            R.id.item3 -> Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+}
